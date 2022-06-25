@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom:20,
-        fontFamily:"monospace",
         fontSize:20,
         color:'white'
     },
@@ -74,7 +73,6 @@ const styles = StyleSheet.create({
     bottom_Text:{
         fontSize: 17,
         textAlign:'center',
-        fontFamily:"monospace",
         fontWeight:'bold'
     },
     button_Containter:{
