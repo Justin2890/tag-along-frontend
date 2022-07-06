@@ -1,24 +1,18 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import {SafeAreaView, StyleSheet, ImageBackground, Text} from 'react-native';
+import { SafeAreaView, StyleSheet, ImageBackground} from 'react-native';
 import SignInScreen from './android/app/src/screens/SignInScreen';
-
+import SignUpScreen from './android/app/src/screens/SignUpScreen';
+import Navigation from './android/app/src/navigation';
+import ForgotPassword from './android/app/src/screens/ForgotPassword';
 
 const App = () => {
-  const localImage = require("./assets/images/BG.jpeg");
+ // const localImage = require("./assets/images/BG.jpeg");
   return (
     
     <SafeAreaView style={styles.root}>
-      <ImageBackground source={localImage} style = {styles.container}>
-    <SignInScreen />
-    </ImageBackground>
+    
+    <Navigation />
+  
     </SafeAreaView>
     
     

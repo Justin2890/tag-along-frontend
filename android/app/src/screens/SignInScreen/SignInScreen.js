@@ -1,33 +1,40 @@
 import React, {useState} from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, useWindowDimensions} from 'react-native';
+import { View, Text, Image, ImageBackground, StyleSheet, ScrollView, useWindowDimensions} from 'react-native';
 import Logo from '../../../../../assets/images/Tag_Along.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
-
+import { useNavigation } from '@react-navigation/native';
 
 const SignInScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
 const{height} = useWindowDimensions();
+const navigation = useNavigation();
 
 const onSignInPressed = () => {
-  console.warn('Sign in');
+ // console.warn('Sign in');
+  // validate user
+  navigation.navigate('Home');
 };
 
 const onForgotPasswordPressed = () => {
-  console.warn('onForgotPasswordPressed');
-}
+  //console.warn('onForgotPasswordPressed');
+  // validate user
+
+  navigation.navigate('Forgot');
+};
 
 const onSignUpPress = () => {
-  console.warn('onSignUpPress');
-}
-
+ // console.warn('onSignUpPress');
+  //validate user
+navigation.navigate('SignUp');
+};
   return (
     <ScrollView showsHorizontalScrollIndicator={false}>
 
     <View style={styles.root}>
-   
+
       <Image 
       source={Logo} 
       style={[styles.logo, 
@@ -79,7 +86,8 @@ const styles = StyleSheet.create({
     width:'70%',
     maxWidth: 300,
     maxHeight: 200,
-  }
+  },
+  
 });
 
 export default SignInScreen
