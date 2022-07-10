@@ -13,13 +13,16 @@ const SignUpScreen = () => {
 const navigation = useNavigation();
 
 const onRegisterPressed = () => {
+  //Enables user upon button press to traverse to EmailConfirmationScreen
   navigation.navigate('Email');
 };
 
 const onSignInPress = () => {
+  //Enables user upon button press to traverse to Login Screen
   navigation.navigate('SignIn');
 };
 const onForgotPasswordPressed = () => {
+  //Enables user upon button press to traverse to Forgot Password Screen
   navigation.navigate('Forgot');
 }
 

@@ -13,14 +13,17 @@ const{height} = useWindowDimensions();
 const navigation = useNavigation();
 
 const onSignInPressed = () => {
+  //Enables user upon button press to traverse to HomeScreen
   navigation.navigate('Home');
 };
 
 const onForgotPasswordPressed = () => {
+  //Enables user upon button press to traverse to ForgotPasswordScreen
   navigation.navigate('Forgot');
 };
 
 const onSignUpPress = () => {
+  //Enables user upon button press to traverse to Create an account screen
 navigation.navigate('SignUp');
 };
 
@@ -42,6 +45,7 @@ navigation.navigate('SignUp');
       value={username} 
       setValue={setUsername} 
       />
+      
       <CustomInput 
       placeholder = "Password" 
       value={password} 

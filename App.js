@@ -5,6 +5,8 @@ import SignUpScreen from './android/app/src/screens/SignUpScreen';
 import Navigation from './android/app/src/navigation';
 import ForgotPassword from './android/app/src/screens/ForgotPassword';
 import RegistrationComplete from './android/app/src/screens/RegistrationComplete';
+import MapScreen from './android/app/src/screens/MapScreen';
+
 const App = () => {
 
   return (
