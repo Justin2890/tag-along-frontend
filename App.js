@@ -4,14 +4,13 @@ import SignInScreen from './android/app/src/screens/SignInScreen';
 import SignUpScreen from './android/app/src/screens/SignUpScreen';
 import Navigation from './android/app/src/navigation';
 import ForgotPassword from './android/app/src/screens/ForgotPassword';
-
+import RegistrationComplete from './android/app/src/screens/RegistrationComplete';
 const App = () => {
- // const localImage = require("./assets/images/BG.jpeg");
+
   return (
-    
     <SafeAreaView style={styles.root}>
-    
-    <Navigation />
+
+    <Navigation/>
   
     </SafeAreaView>
     

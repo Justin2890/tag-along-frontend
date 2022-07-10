@@ -1,4 +1,4 @@
-import { View, Text,StyleSheet, ScrollView } from 'react-native';
+import { View, Text,StyleSheet, ScrollView, ImageBackground} from 'react-native';
 import React, {useState} from 'react';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import CustomInput from '../../components/CustomInput';
@@ -11,18 +11,14 @@ const ForgotPassword = () => {
     const navigation = useNavigation();
 
     const onSendPressed = () =>{
-       // console.warn('onSendPress');
-
-       // navigation.navigate('')
     }
 
     const onSignInPressed = () =>{
-       // console.warn('onSignInPress');
-        //validate user
         navigation.navigate('SignIn');
     }
 
   return (
+    <ImageBackground source ={require('./../../../../../assets/images/BG.jpeg')} style ={styles.screen}>
     <ScrollView showsVerticalScrollIndicator ={false}>
          <View style={styles.root}>
       <Text style = {styles.title}>Reset Your Password</Text>
@@ -44,6 +40,7 @@ const ForgotPassword = () => {
 
       </View>
     </ScrollView>
+    </ImageBackground>
   );
 };
 
@@ -55,8 +52,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
     margin: 10,
+  },
+  screen:{
+  width: '100%',
+  height:'100%',
   }
 });
 

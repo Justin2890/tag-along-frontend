@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, ScrollView, useWindowDimensions} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ImageBackground} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { useNavigation } from '@react-navigation/native';
@@ -13,22 +13,19 @@ const SignUpScreen = () => {
 const navigation = useNavigation();
 
 const onRegisterPressed = () => {
-  //console.warn('Register');
-  // validate user
-  navigation.navigate('SignUp');
+  navigation.navigate('Email');
 };
+
 const onSignInPress = () => {
- //console.warn('onSignInPress');
-  //validate user
   navigation.navigate('SignIn');
 };
 const onForgotPasswordPressed = () => {
-  //console.warn('onForgotPasswordPressed');
-  //validate user
   navigation.navigate('Forgot');
 }
 
   return (
+    <ImageBackground source ={require('./../../../../../assets/images/BG.jpeg')} style ={styles.screen}>
+
     <ScrollView showsHorizontalScrollIndicator={false}>
 
     <View style={styles.root}>
@@ -76,11 +73,11 @@ const onForgotPasswordPressed = () => {
        type="SECONDARY"
        />
 
-       <Text style = {styles.joke}>Please be gentle,
-        I spent all night fighting college ;__;</Text>
+    
     </View>
     
     </ScrollView>
+    </ImageBackground>
   );
 };
 
@@ -92,7 +89,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
     margin: 10,
   },
   joke:{
@@ -100,6 +97,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     margin: 10,
+  },
+  screen:{
+    width: '100%',
+    height: '100%',
   }
 });
 

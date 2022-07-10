@@ -13,24 +13,19 @@ const{height} = useWindowDimensions();
 const navigation = useNavigation();
 
 const onSignInPressed = () => {
- // console.warn('Sign in');
-  // validate user
   navigation.navigate('Home');
 };
 
 const onForgotPasswordPressed = () => {
-  //console.warn('onForgotPasswordPressed');
-  // validate user
-
   navigation.navigate('Forgot');
 };
 
 const onSignUpPress = () => {
- // console.warn('onSignUpPress');
-  //validate user
 navigation.navigate('SignUp');
 };
+
   return (
+    <ImageBackground source ={require('./../../../../../assets/images/BG.jpeg')} style ={styles.screen}>
     <ScrollView showsHorizontalScrollIndicator={false}>
 
     <View style={styles.root}>
@@ -74,6 +69,7 @@ navigation.navigate('SignUp');
     </View>
     
     </ScrollView>
+    </ImageBackground>
   );
 };
 
@@ -87,7 +83,10 @@ const styles = StyleSheet.create({
     maxWidth: 300,
     maxHeight: 200,
   },
-  
+  screen:{
+    width: '100%',
+    height:'100%',
+  }
 });
 
 export default SignInScreen
