@@ -5,10 +5,16 @@ import {StyleSheet,View,Text} from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import {FAB, TextInput} from 'react-native-paper';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-
+import { useNavigation } from '@react-navigation/native';
 
 
 const MapScreen = () => {
+    const navigation = useNavigation();
+
+    const onplusPressed = () =>{
+        navigation.navigate('Home');
+    }
+
     return (
         <View style ={styles.sectionContainer}>
             <View style ={styles.mapStyle}> 
@@ -51,7 +57,10 @@ const MapScreen = () => {
 
                 <FAB 
                 style ={styles.fab}
-                icon="plus"/>
+                icon="plus"
+                onPress = {onplusPressed}
+                />
+         
             </View> 
         </View>
     );
