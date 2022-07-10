@@ -13,6 +13,7 @@ const HomeScreen = () => {
     //Enables user upon button press to traverse to Loginscreen
     navigation.navigate('SignIn');
   }
+  
   return (
     <View>
       <Text style= {{fontSize: 24, alignSelf: 'center'}}>Tag Along Homescreen *in Progress* </Text>
