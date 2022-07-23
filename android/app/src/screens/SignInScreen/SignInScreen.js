@@ -5,16 +5,44 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { useNavigation } from '@react-navigation/native';
 
+const url = "http://127.0.0.1:8000/api"
+
 const SignInScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
 const{height} = useWindowDimensions();
 const navigation = useNavigation();
 
 const onSignInPressed = () => {
   //Enables user upon button press to traverse to HomeScreen
-  navigation.navigate('Home');
+  setErrorMessage('');
+  fetch(`${url}/${username}`, {
+    method: 'GET',
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+    },
+  })
+
+    .then((response) => response.json())
+    .then(data => {
+        if (!data['detail']) {
+            console.log(data);
+            if (data['Password'] === password)
+              navigation.navigate("Home");
+            else
+              setErrorMessage("Wrong password.");
+        }
+        else {
+            //Alert.alert('invalid data');
+            setErrorMessage("Username not found.");
+        }
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 };
 
 const onForgotPasswordPressed = () => {
@@ -57,6 +85,10 @@ navigation.navigate('SignUp');
        text= "Sign In"
         onPress={onSignInPressed}
         />
+
+      {errorMessage !== '' && (
+        <Text style = {{color: 'red'}}> {errorMessage} </Text>
+      )}
 
       <CustomButton
        text= "Forgot Your Password?" 
