@@ -9,12 +9,57 @@ const SignUpScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
 const navigation = useNavigation();
 
+const url = "http://127.0.0.1:8000/api"
+
 const onRegisterPressed = () => {
   //Enables user upon button press to traverse to EmailConfirmationScreen
-  navigation.navigate('Email');
+  setErrorMessage('');
+  if ((password === '') || (username === '') || (email === ''))
+    setErrorMessage("All fields are required.");
+  else {
+    if(password === passwordRepeat) {
+      fetch(`${url}/create`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          Username: username,
+          Email: email,
+          Password: password,
+        }),
+      })
+
+        .then((response) => response.json())
+        .then(data => {
+            if (!data['detail']) {
+                console.log(data);
+                if (data['Password'] === ["This field is required."])
+                  setErrorMessage("Password is required.");
+                else if (data['Username'] === ["This field is required."])
+                  setErrorMessage("Username is required.");
+                else if (data['Username'] === ["user with this Username already exists."])
+                  setErrorMessage("This Username is already in use.");
+                else 
+                  navigation.navigate('Email');
+            }
+            else {
+                //Alert.alert('invalid data');
+                setErrorMessage(data['detail']);
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        })
+    }
+    else
+      setErrorMessage("Entered passwords don't match.");
+  }
 };
 
 const onSignInPress = () => {
@@ -64,6 +109,10 @@ const onForgotPasswordPressed = () => {
        text= "Register"
         onPress={onRegisterPressed}
         />
+
+      {errorMessage !== '' && (
+        <Text style = {{color: 'red'}}> {errorMessage} </Text>
+      )}
 
       <CustomButton
        text= "Whoops, you only forgot Your Password? "
