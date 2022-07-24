@@ -4,7 +4,9 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { useNavigation } from '@react-navigation/native';
 
+
 const SignUpScreen = () => {
+  //State hooks used to set the state of the text input boxes
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,12 +29,9 @@ const onForgotPasswordPressed = () => {
 }
 
   return (
+    //component that requires a source for a background image to be displayed on the Create an account Screen
     <ImageBackground source ={require('./../../../../../assets/images/BG.jpeg')} style ={styles.screen}>
-
-    <ScrollView showsHorizontalScrollIndicator={false}>
-
     <View style={styles.root}>
-
 
     <Text style = {styles.title}> Create an Account</Text>
 
@@ -76,14 +75,12 @@ const onForgotPasswordPressed = () => {
        type="SECONDARY"
        />
 
-    
     </View>
-    
-    </ScrollView>
     </ImageBackground>
   );
 };
 
+//Allows user to Customize visual elements of the create an account screen
 const styles = StyleSheet.create({
   root:{
     alignItems: 'center',

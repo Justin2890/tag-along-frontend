@@ -8,13 +8,13 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { useNavigation } from '@react-navigation/native';
 
 
-const MapScreen = () => {
-    const navigation = useNavigation();
-
+const MapScreen = ({navigation}) => {
     const onplusPressed = () =>{
-        navigation.navigate('Home');
-    }
+        //Enables user upon button press to traverse to Loginscreen
+        navigation.navigate('User');
+      }
 
+    
     return (
         <View style ={styles.sectionContainer}>
             <View style ={styles.mapStyle}> 
@@ -49,18 +49,18 @@ const MapScreen = () => {
                                     console.log(data,details);
 
                                 }}
-                                query={{key:"AIzaSyCQYSxVSPEXyCEa-7r-8ThhaqiH4YWW6oU",language:"en"}}
+                                query={{key:"THISISNOTTHEAPI-KEYYOUWERELOOKINGFOR ;)",language:"en"}}
                                 />
                             </View>
 
 
-
+                        
                 <FAB 
                 style ={styles.fab}
                 icon="plus"
                 onPress = {onplusPressed}
                 />
-         
+               
             </View> 
         </View>
     );

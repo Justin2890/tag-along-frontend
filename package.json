@@ -10,16 +10,19 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
     "@react-navigation/bottom-tabs": "^6.3.2",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.7.0",
     "react": "18.0.0",
+    "react-floating-button": "^1.1.1",
     "react-native": "^0.69.1",
     "react-native-google-places-autocomplete": "^2.4.1",
     "react-native-maps": "^1.0.0",
     "react-native-paper": "^4.12.2",
     "react-native-safe-area-context": "^4.3.1",
     "react-native-screens": "^3.14.1",
+    "react-native-vector-icons": "^9.2.0",
     "react-scripts": "^5.0.1"
   },
   "devDependencies": {

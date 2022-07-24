@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, ImageBackground, ScrollView} from 'react-native';
 import CustomInput from '../../components/CustomInput';
-import CustomButton from '../../components/CustomButton/CustomButton';
+import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+
 
 const EmailConfirmation = () => {
   const [username, setUsername] = useState('');

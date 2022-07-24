@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, ImageBackground} from 'react-native'
 import React from 'react'
-import CustomButton from '../../components/CustomButton/CustomButton';
+import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
 
 const RegistrationComplete= () => {
@@ -14,7 +14,7 @@ const RegistrationComplete= () => {
     <ImageBackground source ={require('./../../../../../assets/images/BG.jpeg')} style ={styles.screen}>
     <View style={styles.root}>
     <Text style = {styles.title}> Registration Success!</Text>
-
+      
        <CustomButton
        text= "Click to return to Login"
        onPress={onReturnPressed}

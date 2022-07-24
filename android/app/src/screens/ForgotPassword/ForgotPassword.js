@@ -1,6 +1,6 @@
 import { View, Text,StyleSheet, ScrollView, ImageBackground} from 'react-native';
 import React, {useState} from 'react';
-import CustomButton from '../../components/CustomButton/CustomButton';
+import CustomButton from '../../components/CustomButton';
 import CustomInput from '../../components/CustomInput';
 import { useNavigation } from '@react-navigation/native';
 
@@ -11,6 +11,7 @@ const ForgotPassword = () => {
     const navigation = useNavigation();
 
     const onSendPressed = () =>{
+      
     }
 
     const onSignInPressed = () =>{
