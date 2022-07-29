@@ -31,7 +31,14 @@ const logoPressed = () => {
   //Enables user upon button press to traverse to Create an account screen
 navigation.navigate('User');
 };
-
+const MapPress = () => {
+  //Enables user upon button press to traverse to Create an account screen
+navigation.navigate('Map');
+};
+const FriendPress = () => {
+  //Enables user upon button press to traverse to Create an account screen
+navigation.navigate('Friend');
+};
   return (
     //component that requires a source for a background image to be displayed on the signin Screen
     <ImageBackground source ={require('./../../../../../assets/images/BG.jpeg')} style ={styles.screen}>
@@ -78,6 +85,18 @@ navigation.navigate('User');
        onPress={onSignUpPress}
        type="SECONDARY"
        />
+        <CustomButton
+       text= "Map" 
+       onPress={MapPress}
+       type="SECONDARY"
+       />
+         <CustomButton
+       text= "Friend" 
+       onPress={FriendPress}
+       type="SECONDARY"
+       />
+
+
     </View>
     </ImageBackground>
   );

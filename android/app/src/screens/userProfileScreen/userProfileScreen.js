@@ -9,10 +9,8 @@ import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
 import Avatar from '@material-ui/core/Avatar';
 
-const SignInScreen = () => {
-    //State hooks used to set the state of the user name and password text input boxes
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const UserProfileScreen = () => {
+
 
 const navigation = useNavigation();
 
@@ -80,7 +78,7 @@ const friendPressed = () => {
       
     
     </View>
-    </ImageBackground>
+</ImageBackground>
   );
 };
 
@@ -111,4 +109,4 @@ screen:{
 },
 });
 
-export default SignInScreen
+export default UserProfileScreen; 

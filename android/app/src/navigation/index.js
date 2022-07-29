@@ -8,7 +8,7 @@ import ForgotPassword from '../screens/ForgotPassword';
 import RegistrationComplete from '../screens/RegistrationComplete';
 import EmailConfirmation from '../screens/EmailConfirmation';
 import MapScreen from '../screens/MapScreen';
-import userProfileScreen from '../screens/userProfileScreen';
+import UserProfileScreen from '../screens/UserProfileScreen';
 import FriendScreen from '../screens/FriendScreen';
 import SettingScreen from '../screens/SettingScreen';
 
@@ -29,7 +29,7 @@ const Navigation = () => {
         <Stack.Screen name= "Email" component={EmailConfirmation}/>
         <Stack.Screen name= "Home" component={HomeScreen}/>
         <Stack.Screen name= "Map" component={MapScreen}/>
-        <Stack.Screen name= "User" component={userProfileScreen}/>
+        <Stack.Screen name= "User" component={UserProfileScreen}/>
         <Stack.Screen name= "Friend" component={FriendScreen}/>
         <Stack.Screen name= "Setting" component={SettingScreen}/>
 

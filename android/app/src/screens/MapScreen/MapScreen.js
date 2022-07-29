@@ -1,73 +1,137 @@
-//Map Screen
-
-import React from 'react';
-import {StyleSheet,View,Text} from 'react-native';
-import MapView, { Callout, Marker } from 'react-native-maps';
-import {FAB, TextInput} from 'react-native-paper';
+import React, { useState,Component } from 'react';
+import {StyleSheet,View,Text, ScrollView, Platform,Image} from 'react-native';
+import MapView, { Callout, Circle, Marker } from 'react-native-maps';
+import {FAB, } from 'react-native-paper';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { useNavigation } from '@react-navigation/native';
+//import Geolocation from '@react-native-community/geolocation';
+import Geolocation from 'react-native-geolocation-service';
 
 
-const MapScreen = ({navigation}) => {
-    const onplusPressed = () =>{
-        //Enables user upon button press to traverse to Loginscreen
-        navigation.navigate('User');
-      }
-
-    
-    return (
-        <View style ={styles.sectionContainer}>
-            <View style ={styles.mapStyle}> 
-                    <MapView
-                    style ={styles.map}
-                    region={{
-                        latitude:40.7128,
-                        longitude:-74.0060,
-                        latitudeDelta:0.09,
-                        longitudeDelta:0.04,
-                    }}>
-                        <Marker
-                            description='delivery person 1'
-                            coordinate={{latitude: 40.7128,longitude: -74.0060}}>
-                            
-                            
-
-                        <Callout tooltip>
-                            <View>
-                                <View style={styles.texting}>
-                                    <Text style = {styles.name}> City Hall Park</Text>
-                                    
-                                </View>
-                            </View>
-                        </Callout>
-                        </Marker>
-                        </MapView>
-                            <View style={styles.searchBox}>
-                                <GooglePlacesAutocomplete
-                                placeholder='Search'
-                                onPress={(data,details=null)=>{
-                                    console.log(data,details);
-
-                                }}
-                                query={{key:"THISISNOTTHEAPI-KEYYOUWERELOOKINGFOR ;)",language:"en"}}
-                                />
-                            </View>
 
 
+export default class Map extends Component {
+constructor(){
+    super()
+    this.state={
+        lat:0,
+        long:0,
+        places:null
+    }
+}
+
+getNewLocation(){
+    const variables_lat = {latitude:this.state.lat,longitude:this.state.long}
+}
+
+componentDidMount(){
+    Geolocation.getCurrentPosition(
+        (position)=>{
+            //to change where the map starts off
+            const lat = position.coords.latitude;
+            const long = position.coords.longitude;
+            this.setState({lat,long})
+            this.getPlaces()
+            this.getNewLocation()
+        },
+    )
+}
+
+
+getPlaces(){
+    const url = this.getUrlWithParameters(this.state.lat,this.state.long,1000, 'restaurant', 'AIzaSyCQYSxVSPEXyCEa-7r-8ThhaqiH4YWW6oU')
+    fetch(url)
+    .then((data)=>data.json())
+    .then((res)=>{
+        console.log(res);
+        const arrayMarkers =[];
+        res.results.map((element,i)=>{
+            arrayMarkers.push(
+                <Marker 
+                key={i}
+                coordinate={{
+                    latitude:element.geometry.location.lat,
+                    longitude:element.geometry.location.lng
+                }}> 
+                <Callout>
+                    <View>
+                        <Text>{element.name}</Text>
+                        <Text>Open:{element.opening_hours.open_now? 'Yes':'No'}</Text>
                         
-                <FAB 
-                style ={styles.fab}
-                icon="plus"
-                onPress = {onplusPressed}
-                />
-               
-            </View> 
+                    </View>
+                </Callout>
+                
+                </Marker>
+            )
+        })
+        this.setState({places:arrayMarkers});
+    })
+}
+
+getUrlWithParameters(lat,long,radius,type,API){
+const url ="https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
+const location =`location=${lat},${long}&radius=${radius}`;
+const typeData = `&types=${type}`;
+const key = `&key=${API}`;
+return `${url}${location}${typeData}${key}`;
+
+}
+
+render(){
+return(
+
+<View style ={styles.sectionContainer}>
+    
+    <MapView
+    style={{flex:1}}
+    region={{
+        latitude: this.state.lat,
+        longitude: this.state.long,        
+        latitudeDelta:0.09,
+        longitudeDelta:0.04
+    }}
+    > 
+
+<Marker 
+//Person Marker
+coordinate={{
+    latitude: this.state.lat,
+    longitude: this.state.long,}}
+    draggable = {true}
+    onDragStart = {(e) => {
+        console.log("Start",e.nativeEvent.coordinates)
+    }}
+    onDragEnd = {(e)=>{
+        console.log("Drag End",e.nativeEvent.coordinate);
+        
+    }}
+    >
+        <View>
+            <Image style = {styles.man} source ={require("./../../../../../assets/images/person.png")}/>
         </View>
-    );
-};
+        
+    </Marker>
+    
+    <Circle 
+    center = {{latitude:this.state.lat,longitude:this.state.long}}
+    radius ={400}
+    fillColor ={'rgba(200,300,200,0.5)'}
+    
+    />
+    {this.state.places}
+    </MapView>
+
+</View>
+);
+}
+}
 
 
+
+
+
+// Styling 
 const styles = StyleSheet.create({
+    // Filling the entire page with just the map
     sectionContainer:
     {
         flex:1
@@ -78,6 +142,7 @@ const styles = StyleSheet.create({
     map:{
         ...StyleSheet.absoluteFillObject,
     },
+    // Fab styling
     fab:{
         position: "absolute",
         right:0,
@@ -97,6 +162,7 @@ const styles = StyleSheet.create({
         fontSize:15,
         marginBottom:5
     }, 
+    //Search Bar Styling
     searchBox: {
        position:"absolute",
        width:"90%",
@@ -112,6 +178,16 @@ const styles = StyleSheet.create({
        borderRadius:15
 
       },
-});
+      scroll_view:{
+        position:'absolute',
+        paddingHorizontal:10
+      }
+      ,
+      man:{
+        width:50,
+        height:50,
+        resizeMode:"contain",
+        alignSelf:"center"
 
-export default MapScreen
+      }
+});
