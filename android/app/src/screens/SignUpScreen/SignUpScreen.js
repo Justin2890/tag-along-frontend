@@ -13,7 +13,7 @@ const SignUpScreen = () => {
 
 const navigation = useNavigation();
 
-const url = "http://127.0.0.1:8000/api"
+const url = "https://tag-along-backend-pg9zg.ondigitalocean.app/api"
 
 const onRegisterPressed = () => {
   //Enables user upon button press to traverse to EmailConfirmationScreen
@@ -49,7 +49,6 @@ const onRegisterPressed = () => {
                   navigation.navigate('Email');
             }
             else {
-                //Alert.alert('invalid data');
                 setErrorMessage(data['detail']);
             }
         })

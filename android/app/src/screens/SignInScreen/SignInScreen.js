@@ -5,7 +5,7 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { useNavigation } from '@react-navigation/native';
 
-const url = "http://127.0.0.1:8000/api"
+const url = "https://tag-along-backend-pg9zg.ondigitalocean.app/api"
 
 const SignInScreen = () => {
   const [username, setUsername] = useState('');
@@ -29,15 +29,14 @@ const onSignInPressed = () => {
     .then((response) => response.json())
     .then(data => {
         if (!data['detail']) {
-            console.log(data);
-            if (data['Password'] === password)
-              navigation.navigate("Home");
-            else
-              setErrorMessage("Wrong password.");
+          console.log(data);
+          if (data['Password'] === password)
+            navigation.navigate("Home");
+          else
+            setErrorMessage("Wrong password.");
         }
         else {
-            //Alert.alert('invalid data');
-            setErrorMessage("Username not found.");
+          setErrorMessage("Username not found.");
         }
     })
     .catch((error) => {
