@@ -23,23 +23,13 @@ const RegistrationComplete= () => {
     </ImageBackground>
   );
 };
-
 const styles = StyleSheet.create({
-    root:{
-      alignItems: 'center',
-      padding: 20,
-    },
-    title: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      color: 'white',
-      margin: 10,
-    },
-   screen:{
-    width: '100%',
-    height: '100%',
-   }
-  });
+screen:{
+  width: '100%',
+  height:'100%',
+}
+});
+
   
 
 export default RegistrationComplete

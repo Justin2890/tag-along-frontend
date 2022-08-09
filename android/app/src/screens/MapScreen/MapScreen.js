@@ -1,12 +1,29 @@
 import React, { useState,Component } from 'react';
-import {StyleSheet,View,Text, ScrollView, Platform,Image} from 'react-native';
+import {StyleSheet,View,Text, ScrollView, Platform,Image,PermissionsAndroid} from 'react-native';
 import MapView, { Callout, Circle, Marker } from 'react-native-maps';
 import {FAB, } from 'react-native-paper';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 //import Geolocation from '@react-native-community/geolocation';
 import Geolocation from 'react-native-geolocation-service';
 
-
+async function requestGeolocationPermission() {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          'title': 'Ridesharer Geolocation Permission',
+          'message': 'Ridesharer needs access to your current location so you can share or search for a ride'
+        });
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log("You can use the geolocation")
+      } else {
+        console.log("Geolocation permission denied")
+      }
+    } catch (err) {
+      console.warn(err)
+    }
+  }
+  requestGeolocationPermission();
 
 
 export default class Map extends Component {
@@ -19,9 +36,7 @@ constructor(){
     }
 }
 
-getNewLocation(){
-    const variables_lat = {latitude:this.state.lat,longitude:this.state.long}
-}
+
 
 componentDidMount(){
     Geolocation.getCurrentPosition(
@@ -31,7 +46,7 @@ componentDidMount(){
             const long = position.coords.longitude;
             this.setState({lat,long})
             this.getPlaces()
-            this.getNewLocation()
+            
         },
     )
 }

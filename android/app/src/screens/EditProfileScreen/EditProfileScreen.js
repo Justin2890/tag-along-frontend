@@ -1,11 +1,12 @@
-import { View, Text, ImageBackground} from 'react-native'
+import { View, Text,TouchableHighlight,StyleSheet } from 'react-native'
 import React from 'react'
-import { useNavigation } from '@react-navigation/native';
+import { Avatar } from '@material-ui/core'
 
 const EditProfileScreen = () => {
+ 
   return (
     <View>
-      <Text>EditProfileScreen</Text>
+    
     </View>
   )
 }

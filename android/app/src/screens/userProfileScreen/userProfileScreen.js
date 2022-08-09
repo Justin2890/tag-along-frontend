@@ -4,10 +4,8 @@ import Settings from '../../../../../assets/images/Settings.png';
 import Friend from '../../../../../assets/images/Friend.png';
 import Logout from '../../../../../assets/images/logout.png';
 import { View, Image, ImageBackground, StyleSheet, TouchableWithoutFeedback} from 'react-native';
-import CustomInput from '../../components/CustomInput';
-import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
-import Avatar from '@material-ui/core/Avatar';
+
 
 const UserProfileScreen = () => {
 
@@ -87,16 +85,16 @@ const styles = StyleSheet.create({
   world: {
     maxHeight:75,
     right:-125,
-    bottom: -740,
+    bottom: -655,
  },
  Settings:{
   maxWidth: 75,
     right: -300,
-    bottom: -659,
+    bottom: -575,
  },
 Friend:{
   maxWidth: 100,
-  bottom: -413
+  bottom: -333
 },
 logout:{
 maxWidth: 90,
@@ -110,3 +108,4 @@ screen:{
 });
 
 export default UserProfileScreen; 
+
